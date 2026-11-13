@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuenta regresiva · Gobierno de Kast</title>
+  <meta name="description" content="Cuenta regresiva hasta el fin del gobierno de José Antonio Kast y hasta los 18 meses en que pidió ser juzgado.">
+
+  <!-- Vista previa al compartir en redes sociales -->
+  <meta property="og:title" content="Cuenta regresiva · Gobierno de Kast">
+  <meta property="og:description" content="¿Cuánto falta para los 18 meses y para el fin del gobierno?">
+  <meta property="og:type" content="website">
+
+  <!-- Tipografías: letra gruesa estilo afiche y texto de lectura -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Work+Sans:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Paleta: azul brillante, naranjo y amarillo, con contorno azul tinta */
+      --azul: #1f4ed8;
+      --azul-claro: #3a68ec;
+      --tinta: #0b1f5c;
+      --naranjo: #ff6a1a;
+      --amarillo: #ffc928;
+      --crema: #fff6e0;
+
+      --display: "Bowlby One", "Arial Black", Impact, "Inter", sans-serif;
+      --texto: "Work Sans", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--tinta);
+      font-family: var(--texto);
+      background-color: var(--azul);
+      /* Trama de puntos tipo impresión de cómic */
+      background-image:
+        radial-gradient(rgba(255,255,255,0.10) 1.6px, transparent 1.7px),
+        radial-gradient(ellipse at 50% 0%, var(--azul-claro) 0%, var(--azul) 65%);
+      background-size: 14px 14px, 100% 100%;
+      overflow-x: hidden;
+    }
+
+    /* ---------- Rótulos con contorno estilo pulp ---------- */
+    .pulp {
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      font-synthesis: none;
+      -webkit-text-stroke: 0.06em var(--tinta);
+      paint-order: stroke fill;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1.25rem 1rem;
+    }
+
+    header h1 {
+      font-size: clamp(2.6rem, 9vw, 6.5rem);
+      color: var(--amarillo);
+      text-shadow: 0.06em 0.07em 0 var(--naranjo), 0.1em 0.12em 0 var(--tinta);
+      transform: rotate(-2deg);
+      letter-spacing: 0.01em;
+    }
+
+    .cinta {
+      display: inline-block;
+      margin-top: 1.4rem;
+      background: var(--crema);
+      color: var(--tinta);
+      border: 3px solid var(--tinta);
+      box-shadow: 5px 5px 0 var(--tinta);
+      padding: 0.45rem 1.1rem;
+      font-weight: 700;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      transform: rotate(1deg);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem;
+      width: 100%;
+      max-width: 1220px;
+    }
+
+    /* ---------- Tarjetas tipo afiche ---------- */
+    .card {
+      position: relative;
+      background: var(--crema);
+      border: 5px solid var(--tinta);
+      border-radius: 18px;
+      box-shadow: 12px 12px 0 var(--tinta);
+      padding: 2.4rem 1.75rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+
+    .card.c1 { --acento: var(--naranjo); --acento-2: var(--amarillo); transform: rotate(-1deg); }
+    .card.c2 { --acento: var(--amarillo); --acento-2: var(--naranjo); transform: rotate(1deg); }
+
+    /* Sello en la esquina */
+    .sello {
+      position: absolute;
+      top: -1.4rem;
+      left: 1.25rem;
+      background: var(--acento);
+      color: var(--tinta);
+      border: 4px solid var(--tinta);
+      border-radius: 999px;
+      padding: 0.35rem 1.1rem 0.25rem;
+      font-family: var(--display);
+      font-weight: 900;
+      font-synthesis: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--tinta);
+      transform: rotate(-3deg);
+    }
+
+    .card h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: var(--acento);
+      text-shadow: 0.07em 0.08em 0 var(--tinta);
+      margin-top: 0.4rem;
+    }
+
+    .date {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ---------- Contador ---------- */
+    .counter {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+    }
+
+    .unit {
+      background: var(--azul);
+      background-image: radial-gradient(rgba(255,255,255,0.12) 1.4px, transparent 1.5px);
+      background-size: 10px 10px;
+      border: 4px solid var(--tinta);
+      border-radius: 12px;
+      padding: 1rem 0.2rem 0.75rem;
+      text-align: center;
+      container-type: inline-size;   /* el número se ajusta al ancho de su casilla */
+    }
+
+    .num {
+      display: block;
+      font-family: var(--display);
+      font-weight: 900;
+      font-synthesis: none;
+      font-size: clamp(1.6rem, 44cqi, 4rem);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      color: var(--crema);
+      -webkit-text-stroke: 0.06em var(--tinta);
+      paint-order: stroke fill;
+      text-shadow: 0.06em 0.07em 0 var(--tinta);
+    }
+
+    /* Los días van en una fila propia, en grande */
+    .unit:first-child { grid-column: 1 / -1; padding: 1.1rem 0.5rem 0.9rem; }
+    .unit:first-child .num { color: var(--acento); font-size: clamp(2.4rem, 24cqi, 6.5rem); }
+    .unit:first-child .lbl { font-size: clamp(0.7rem, 3cqi, 0.95rem); }
+
+    .lbl {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: clamp(0.5rem, 10.5cqi, 0.75rem);
+      font-weight: 700;
+      color: var(--crema);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .done {
+      display: none;
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--acento);
+      text-shadow: 0.07em 0.08em 0 var(--tinta);
+      padding: 1.25rem 0;
+    }
+
+    .card.finished .counter { display: none; }
+    .card.finished .done { display: block; }
+
+    /* ---------- Globo de diálogo ---------- */
+    .globo {
+      position: relative;
+      background: #fff;
+      border: 4px solid var(--tinta);
+      border-radius: 18px;
+      padding: 1rem 1.1rem 0.9rem;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .globo::after {
+      content: "";
+      position: absolute;
+      left: 2rem;
+      bottom: -18px;
+      width: 26px;
+      height: 26px;
+      background: #fff;
+      border-right: 4px solid var(--tinta);
+      border-bottom: 4px solid var(--tinta);
+      transform: skewX(25deg) rotate(45deg);
+    }
+
+    .globo p { font-style: italic; font-weight: 500; }
+
+    .globo cite {
+      display: block;
+      font-style: normal;
+      font-size: 0.8rem;
+      margin-top: 0.45rem;
+      opacity: 0.8;
+    }
+
+    .globo a { color: var(--azul); font-weight: 700; }
+
+    /* ---------- Barra de progreso ---------- */
+    .progress-wrap { margin-top: auto; }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.45rem;
+    }
+
+    .track {
+      height: 22px;
+      background: #fff;
+      border: 4px solid var(--tinta);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--acento) 0 10px,
+        var(--acento-2) 10px 20px
+      );
+      border-right: 4px solid var(--tinta);
+      transition: width 0.6s ease;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--crema);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 1.5rem 1.25rem 2.2rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; gap: 3rem; }
+      header { padding-top: 2.2rem; }
+    }
+
+    @media (max-width: 480px) {
+      main { padding-left: 1rem; padding-right: 1rem; }
+      .card { padding: 2.2rem 1rem 1.3rem; box-shadow: 8px 8px 0 var(--tinta); border-width: 4px; }
+      .counter { gap: 0.4rem; }
+      .unit { border-width: 3px; }
+      .lbl { letter-spacing: 0.03em; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 class="pulp">Cuenta<br>regresiva</h1>
+    <div class="cinta">Gobierno de José Antonio Kast · desde el 11 de marzo de 2026</div>
+  </header>
+
+  <main>
+    <div class="grid">
+
+      <!-- Cuenta 1: 18 meses -->
+      <section class="card c1" id="c1">
+        <span class="sello">A los 18 meses</span>
+        <div>
+          <h2 class="pulp">“Júzgueme y pídame el cargo”</h2>
+          <p class="date">11 de septiembre de 2027</p>
+        </div>
+
+        <div class="counter" aria-live="polite">
+          <div class="unit"><span class="num" data-u="d">–</span><span class="lbl">Días</span></div>
+          <div class="unit"><span class="num" data-u="h">–</span><span class="lbl">Horas</span></div>
+          <div class="unit"><span class="num" data-u="m">–</span><span class="lbl">Minutos</span></div>
+          <div class="unit"><span class="num" data-u="s">–</span><span class="lbl">Segundos</span></div>
+        </div>
+        <div class="done pulp">¡Se cumplieron los 18 meses!</div>
+
+        <div class="globo">
+          <p>“En 18 meses más, si yo soy presidente, júzgueme y pídame el cargo.”</p>
+          <cite>
+            José Antonio Kast, sobre su promesa de recortar US$6.000 millones de gasto fiscal en 18 meses.
+            <a href="https://www.biobiochile.cl/biobiotv/programas/radiograma-biobiotv/2025/09/25/usd-6-mil-millones-de-recorte-en-18-meses-el-flanco-abierto-de-kast-que-agudiza-tension-en-la-derecha.shtml" target="_blank" rel="noopener">BioBioChile, 25/09/2025</a>
+          </cite>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-head"><span>Transcurrido</span><span class="pct">–</span></div>
+          <div class="track"><div class="bar"></div></div>
+        </div>
+      </section>
+
+      <!-- Cuenta 2: fin del gobierno -->
+      <section class="card c2" id="c2">
+        <span class="sello">Fin del mandato</span>
+        <div>
+          <h2 class="pulp">Término del gobierno</h2>
+          <p class="date">11 de marzo de 2030</p>
+        </div>
+
+        <div class="counter" aria-live="polite">
+          <div class="unit"><span class="num" data-u="d">–</span><span class="lbl">Días</span></div>
+          <div class="unit"><span class="num" data-u="h">–</span><span class="lbl">Horas</span></div>
+          <div class="unit"><span class="num" data-u="m">–</span><span class="lbl">Minutos</span></div>
+          <div class="unit"><span class="num" data-u="s">–</span><span class="lbl">Segundos</span></div>
+        </div>
+        <div class="done pulp">¡Terminó el gobierno!</div>
+
+        <div class="globo">
+          <p>El Presidente de la República dura cuatro años en el cargo y no puede ser reelegido para el período siguiente.</p>
+          <cite>Constitución Política de la República, art. 25.</cite>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-head"><span>Transcurrido</span><span class="pct">–</span></div>
+          <div class="track"><div class="bar"></div></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    Horas calculadas para Chile continental (12:00, UTC−3). La página se actualiza sola cada segundo.
+  </footer>
+
+  <script>
+    // ============================================================
+    //  FECHAS — si necesita cambiarlas, edite solo estas líneas.
+    //  Formato: AAAA-MM-DDTHH:MM:SS-03:00  (hora de Chile en verano)
+    // ============================================================
+    const INICIO       = new Date("2026-03-11T12:00:00-03:00"); // asunción
+    const MES_18       = new Date("2027-09-11T12:00:00-03:00"); // inicio + 18 meses
+    const FIN_GOBIERNO = new Date("2030-03-11T12:00:00-03:00"); // cambio de mando
+
+    const cuentas = [
+      { el: document.getElementById("c1"), meta: MES_18 },
+      { el: document.getElementById("c2"), meta: FIN_GOBIERNO },
+    ];
+
+    const pad = n => String(n).padStart(2, "0");
+    const fmtMiles = n => n.toLocaleString("es-CL");
+
+    function actualizar() {
+      const ahora = Date.now();
+
+      for (const c of cuentas) {
+        let resto = c.meta.getTime() - ahora;
+
+        if (resto <= 0) {
+          c.el.classList.add("finished");
+          resto = 0;
+        }
+
+        const seg = Math.floor(resto / 1000);
+        const d = Math.floor(seg / 86400);
+        const h = Math.floor((seg % 86400) / 3600);
+        const m = Math.floor((seg % 3600) / 60);
+        const s = seg % 60;
+
+        c.el.querySelector('[data-u="d"]').textContent = fmtMiles(d);
+        c.el.querySelector('[data-u="h"]').textContent = pad(h);
+        c.el.querySelector('[data-u="m"]').textContent = pad(m);
+        c.el.querySelector('[data-u="s"]').textContent = pad(s);
+
+        // Barra de progreso: cuánto ha pasado desde el inicio del gobierno
+        const total = c.meta.getTime() - INICIO.getTime();
+        const pasado = Math.min(Math.max(ahora - INICIO.getTime(), 0), total);
+        const pct = (pasado / total) * 100;
+        c.el.querySelector(".bar").style.width = pct.toFixed(2) + "%";
+        c.el.querySelector(".pct").textContent = pct.toFixed(1).replace(".", ",") + " %";
+      }
+    }
+
+    actualizar();
+    setInterval(actualizar, 1000);
+  </script>
+</body>
+</html>
